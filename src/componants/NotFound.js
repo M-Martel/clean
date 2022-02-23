@@ -5,13 +5,3 @@ const NotFound = () => {
 };
 
 export default NotFound;
-// export const Submit = ({ compagny, worker,gaze, action }) => {
-//     return (
-//         <button
-//             compagny={compagny}
-//             worker={worker}
-//             gaze={gaze}
-//             onClick={action}>
-//         </button>
-//     )
-// }

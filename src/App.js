@@ -1,11 +1,27 @@
 import React from "react";
 import "./App.css";
-import { Input } from "antd";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const App = () => {
-  const { TextArea } = Input;
+  const [submit, setSubmit] = useState({
+    name: "",
+    date: "date",
+    text: "",
+  });
 
+  const handleChange = (key, value) => {
+    setSubmit({
+      ...submit,
+      [key]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const build = JSON.stringify(submit);
+    console.log(build);
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -15,31 +31,43 @@ const App = () => {
         />
       </header>
       <div className="wrappeur">
-        <div className="form-group">
-          <label htmlFor="inputCompagny">Nom entreprise ou client :</label>
-          <input id="inputCompagny" type="text" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="inputWorker">
-            Notre technicien est intervenu pour l'entretien de la vitrerie le
-          </label>
-          <input bsSize="lg" type="date" name="date" />
-        </div>
-        <div className="form-group">
-          Observation
-          <TextArea maxLength={50} />
-        </div>
-        <div className="merci">Merci de votre confiance</div>
-        <div className="envoie">
-          <Link to={`/NotFound`}>
-            <input type="submit" value="validation" />
-          </Link>
-
-          {/* <img
-            src={process.env.PUBLIC_URL + "/logo-clean3000-transparent.png"}
-            alt="cleanfooter"
-          /> */}
-        </div>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className="form-group">
+            <label htmlFor="inputName">Nom :</label>
+            <input
+              id="inputName"
+              type="text"
+              value={submit.name}
+              onChange={(e) => handleChange("name", e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              id="date"
+              bsSize="lg"
+              type="date"
+              name="date"
+              value={submit.date}
+              onChange={(e) => handleChange("date", e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="inputText">Observation :</label>
+            <textarea
+              name="text"
+              id="inputText"
+              cols="10"
+              rows="10"
+              onChange={(e) => handleChange("text", e.target.value)}
+            ></textarea>
+          </div>
+          <div className="merci">
+            Merci de votre confiance
+            <Link to={`/command`}>
+              <input type="submit" value="validation" onClick={handleChange} />
+            </Link>
+          </div>
+        </form>
       </div>
     </div>
   );

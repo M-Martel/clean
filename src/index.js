@@ -6,13 +6,13 @@ import "antd/dist/antd.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import NotFound from "./componants/NotFound";
-import Recapitulatif from "./componants/Recapitulatif";
+import Clean from "./componants/Clean";
 
 const Root = () => (
   <BrowserRouter>
     <Routes>
       <Route exact path="/" element={<App />} />
-      <Route path="/Recapitulatif" element={<Recapitulatif />} />
+      <Route path="/Clean" element={<Clean />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </BrowserRouter>
